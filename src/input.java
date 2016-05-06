@@ -1,7 +1,7 @@
 public class input {
     private String input;
 
-    public Input(String input)
+    public input(String input)
     {
     	this.input = input;
     }
