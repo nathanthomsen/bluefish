@@ -3,11 +3,11 @@ public class input {
 
     public Input(String input)
     {
-	this.input = input;
+    	this.input = input;
     }
     
     /* Use if user asks to encrypt. */
-    public boolean askEncrypt
+    public boolean askEncrypt()
     {
 	if (input.equals("Encrypt") || input.equals("encrypt")
 	    || input.equals("e"))
