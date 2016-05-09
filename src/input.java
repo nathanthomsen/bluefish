@@ -12,7 +12,8 @@ public class input {
 		}
 	}
 	
-	public boolean isEncrypt()
+	/* Use this function is user asks to encrypt. */
+	public boolean askEncrypt()
 	{
 		if(user_inputs.get(0).equals("Encrypt")||user_inputs.get(0).equals("encrypt"))
 		{
@@ -24,7 +25,8 @@ public class input {
 		}
 	}
 	
-	public boolean isDecrypt()
+	/* Use this function is user asks to decrypt. */
+	public boolean askDecrypt()
 	{
 		if(user_inputs.get(0).equals("Decrypt")||user_inputs.get(0).equals("decrypt"))
 		{
@@ -35,6 +37,7 @@ public class input {
 			return false;
 		}
 	}
+	
 	public String toString()
 	{
 		String output = new String();
