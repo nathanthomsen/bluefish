@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class bluefish {
+public class bluefish implements encpt {
     /* Definition of size-related constants. MAIN_SIZE is for use
      * in the algorithm as the final size used by the key and by
      * text which is encrypted. SECT_SIZE is for use in the 32-bit
@@ -29,7 +29,7 @@ public class bluefish {
      * first four columns match to the q0 permutation and the next
      * four columns match to the q1 permutation. Bear in mind: the
      * hexadecimal values may need to be cast to bytes. */
-	public static final byte[][][] tables = new byte[][][]{
+    private static final byte[][][] tables = new byte[][][]{
 		{ 
 	        {0x8,0x1,0x7,0xD,0x6,0xF,0x3,0x2,0x0,0xB,0x5,0x9,0xE,0xC,0xA,0x4}, 
 	        {0xE,0xC,0xB,0x8,0x1,0x2,0x3,0x5,0xF,0x4,0xA,0x6,0x7,0x0,0x9,0xD}, 
@@ -43,6 +43,20 @@ public class bluefish {
 	        {0xB,0x9,0x5,0x1,0xC,0x3,0xD,0xE,0x6,0x4,0x7,0xF,0x2,0x0,0x8,0xA} 
 	    } 
 	};
+    
+    /* Function input_filler is purely for testing, please ignore.
+     * This function genereates input which fills "user" input before
+     * splitting. This function is not for filling the key. */
+    public void input_filler(byte[] INPUT)
+    {
+    	for (int j = 0; j < INPUT.length; j++)
+    	{
+    		if (j % 2 == 0)
+    			INPUT[j] = 0x00;
+    		else
+    			INPUT[j] = 0x01;	
+    	}
+    }
 	
     /* Function input_splitter splits a 128-bit long array of bytes
      * into 4 different 32-bit portions, be the array related to the
