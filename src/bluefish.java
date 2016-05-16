@@ -82,4 +82,36 @@ public class bluefish implements encpt {
 			}
 		}
 	}
+	
+	/* Function bit_rot is used to rotate a value of 4 bytes by one bit. */
+	public static final int bit_rot(int rot)
+	{
+		return (((rot) >> 1) | (((rot) << 3) &0x8));
+	}
+	
+	/* Function gen_qtable is the integral piece in the generation of
+	 * qtables for the q0 and q1 permutations. */
+	public static void gen_qtable(byte[][] t, byte[] q)
+	{
+		int at, bt, ao, bo;
+		
+		t = new byte[4][16];
+		q = new byte[256];
+		
+		for (int i = 1; i < MAIN_SIZE*2; i++)
+		{
+			at = i >> 4;
+			bt = i&0xf;
+			ao = at ^ bt;
+			bo = at ^ bit_rot(bt) ^ ((at << 3)&8);
+			at = t[0][ao];
+			bt = t[1][bo];
+			ao = at ^ bt;
+			bo = at ^ bit_rot(bt) ^ ((at << 3)&8);
+			at = t[2][ao];
+			bt = t[3][bo];
+			
+			q[i] = (byte) ((bt << 4) | at);
+		}
+	}
 }
